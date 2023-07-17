@@ -1,0 +1,9 @@
+
+-----------BER
+="{"&CHAR(34)&"Date"&CHAR(34)&": "&CHAR(34)&M2&CHAR(34)&", "&CHAR(34)&"Show"&CHAR(34)&": "&CHAR(34)&S2&CHAR(34)&", "&CHAR(34)&"Airport_code"&CHAR(34)&": "&CHAR(34)&H2&CHAR(34)&", "&CHAR(34)&"Airport_name"&CHAR(34)&": "&CHAR(34)&I2&CHAR(34) &", "&CHAR(34)&"Airline"&CHAR(34)&": "&CHAR(34)&A2&CHAR(34)  &", "&CHAR(34) & "Flight"&CHAR(34)&": "&CHAR(34) & B2 &CHAR(34)& "},"
+
+--Show
+=F2&" ("&LEFT(RIGHT("0000" & L2,4),2)&":"&RIGHT(RIGHT("0000" & L2,4),2)&" - "&I2&" ("& H2 & ")" & " - " & A2 & ")"
+
+--Flight list
+="{"&CHAR(34)&"Date"&CHAR(34)&": "&CHAR(34)&M2&CHAR(34)&", "&CHAR(34)&"Show"&CHAR(34)&": "&CHAR(34)&S2&CHAR(34)&", "&CHAR(34)&"Airport_code"&CHAR(34)&": "&CHAR(34)&H2&CHAR(34)&", "&CHAR(34)&"Airport_name"&CHAR(34)&": "&CHAR(34)&I2&CHAR(34) &", "&CHAR(34)&"Airline"&CHAR(34)&": "&CHAR(34)&B2&CHAR(34)  &", "&CHAR(34) & "Flight"&CHAR(34)&": "&CHAR(34) & F2 &CHAR(34)& "},"
