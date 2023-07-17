@@ -18,7 +18,7 @@ function find_flight_q24(list, item) {
 }
 
 function load_flight_q24() {
-  var option = api.fn.answers().Core_Q23;
+/*   //var option = api.fn.answers().Core_Q23;
  
   if (option ===1) {
     console.log("International");
@@ -26,8 +26,8 @@ function load_flight_q24() {
   } else if (option ===2) {
     console.log("Domestic");
     flightListQ24 = JSON.parse(arrivalDomesticFlightList);
-  }
-
+  } */
+  flightListQ24 = JSON.parse(arrivalFlightList);
 }
 
 function search_flight_q24() {

@@ -45,8 +45,7 @@
     <script src="search_list/postal_code_Poland.js"></script>
     <script src="search_list/postal_code_None.js"></script>
     <script src="search_list/flight_list_Departure.js"></script>
-    <script src="search_list/flight_list_Arrival_International.js"></script>
-    <script src="search_list/flight_list_Arrival_Domestic.js"></script>
+    <script src="search_list/flight_list_Arrival.js"></script>
 
     <script src="scripts/maps_search.js"></script>
     <script src="scripts/postal_code_search_q6.js"></script>
@@ -75,35 +74,39 @@
           const googleMapsHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
 
-            if (api.fn.getCurrentPageIndex() === 37) { //page for Google Map 
+            if (api.fn.getCurrentPageIndex() === 20) { //page for Google Map 
               showGoogleMaps();
             } else {
               hideGoogleMaps();
             }
 
-            if (api.fn.getCurrentPageIndex() === 38) { //postal code
+            if (api.fn.getCurrentPageIndex() === 21) { //postal code
               showPostalCodeSection_q27() ;
             } else {
               hidePostalCodeSection_q27();
             }
 
-            if (api.fn.getCurrentPageIndex() === 7) { //postal code
+            if (api.fn.getCurrentPageIndex() === 18) { //postal code
               showPostalCodeSection_q6();
             } else {
               hidePostalCodeSection_q6();
             }
 
-            if (api.fn.getCurrentPageIndex() === 2) { //Flight departure
+            
+            if (api.fn.getCurrentPageIndex() === 13) { //Flight arrival
+              console.log("Flight arrival");
+              showFlightCodeSection_q24() ;
+            } else {
+              hideFlightCodeSection_q24();
+            }
+
+            if (api.fn.getCurrentPageIndex() === 14) { //Flight departure
+              console.log("Flight departure");
               showFlightCodeSection_q3() ;
             } else {
               hideFlightCodeSection_q3();
             }
 
-            if (api.fn.getCurrentPageIndex() === 25) { //Flight arrival
-              showFlightCodeSection_q24() ;
-            } else {
-              hideFlightCodeSection_q24();
-            }
 
           };
 
