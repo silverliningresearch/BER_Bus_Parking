@@ -74,33 +74,33 @@
           const googleMapsHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
 
-            if (api.fn.getCurrentPageIndex() === 20) { //page for Google Map 
+            if (api.fn.getCurrentPageIndex() === 22) { //page for Google Map 
               showGoogleMaps();
             } else {
               hideGoogleMaps();
             }
 
-            if (api.fn.getCurrentPageIndex() === 21) { //postal code
+            if (api.fn.getCurrentPageIndex() === 23) { //postal code
               showPostalCodeSection_q27() ;
             } else {
               hidePostalCodeSection_q27();
             }
 
-            if (api.fn.getCurrentPageIndex() === 18) { //postal code
+            if (api.fn.getCurrentPageIndex() === 20) { //postal code
               showPostalCodeSection_q6();
             } else {
               hidePostalCodeSection_q6();
             }
 
             
-            if (api.fn.getCurrentPageIndex() === 13) { //Flight arrival
+            if (api.fn.getCurrentPageIndex() === 15) { //Flight arrival
               console.log("Flight arrival");
               showFlightCodeSection_q24() ;
             } else {
               hideFlightCodeSection_q24();
             }
 
-            if (api.fn.getCurrentPageIndex() === 14) { //Flight departure
+            if (api.fn.getCurrentPageIndex() === 16) { //Flight departure
               console.log("Flight departure");
               showFlightCodeSection_q3() ;
             } else {
