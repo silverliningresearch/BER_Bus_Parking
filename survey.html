@@ -44,15 +44,18 @@
     <script src="search_list/postal_Code_Germany.js"></script>
     <script src="search_list/postal_code_Poland.js"></script>
     <script src="search_list/postal_code_None.js"></script>
-    <script src="search_list/flight_list_Departure.js"></script>
+    <script src="https://silverliningresearch.github.io/BER_PS_2024/search_list/flight_list_Departure.js"></script>
     <script src="search_list/flight_list_Arrival.js"></script>
-
+    
     <script src="scripts/maps_search.js"></script>
-    <script src="scripts/postal_code_search_q6.js"></script>
-    <script src="scripts/postal_code_search_q27.js"></script>
-    <script src="scripts/flight_search_q3.js"></script>
-    <script src="scripts/flight_search_q24.js"></script>
+    <script src="scripts/postal_code_search_q13.js"></script>
+    <script src="scripts/postal_code_search_q12.js"></script>
+    <script src="scripts/postal_code_search_q8.js"></script>
+        <script src="scripts/postal_code_search_q29.js"></script>
 
+    <script src="scripts/flight_search_q3_departure.js"></script>
+    <script src="scripts/flight_search_q24_arrival.js"></script>
+    
     <div id="selectedAddress"></div>
     <input
       id="pac-input"
@@ -70,43 +73,65 @@
 
     <script>
         window.addEventListener('load', function () {
+
+        var current_url = window.location.href;
+        if (current_url.includes("?l=")) {
+          var new_url = current_url.substring(0, current_url.length - 5)
+          location.assign(new_url);
+        }
+
         setTimeout(() => {
           const googleMapsHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
 
-            if (api.fn.getCurrentPageIndex() === 22) { //page for Google Map 
-              showGoogleMaps();
+            if (api.fn.getCurrentPageIndex() === 5) { //Flight arrival: 
+              showFlightCodeSection_q24_arrival() ;
             } else {
-              hideGoogleMaps();
+              hideFlightCodeSection_q24_arrival();
             }
 
-            if (api.fn.getCurrentPageIndex() === 23) { //postal code
-              showPostalCodeSection_q27() ;
+            if (api.fn.getCurrentPageIndex() === 12) { //Flight departure
+              showFlightCodeSection_q3_departure() ;
             } else {
-              hidePostalCodeSection_q27();
+              hideFlightCodeSection_q3_departure();
             }
 
-            if (api.fn.getCurrentPageIndex() === 20) { //postal code
-              showPostalCodeSection_q6();
+            if (api.fn.getCurrentPageIndex() === 10) { //Q8 = Core_Q27 = ADV6.4
+              showPostalCodeSection_q8() ;
             } else {
-              hidePostalCodeSection_q6();
+              hidePostalCodeSection_q8();
             }
-
             
-            if (api.fn.getCurrentPageIndex() === 15) { //Flight arrival
-              console.log("Flight arrival");
-              showFlightCodeSection_q24() ;
+            if (api.fn.getCurrentPageIndex() === 16) { //Q12 = leaving bus
+              showPostalCodeSection_q12();
             } else {
-              hideFlightCodeSection_q24();
+              hidePostalCodeSection_q12();
             }
 
-            if (api.fn.getCurrentPageIndex() === 16) { //Flight departure
-              console.log("Flight departure");
-              showFlightCodeSection_q3() ;
-            } else {
-              hideFlightCodeSection_q3();
+            if (api.fn.getCurrentPageIndex() === 19) { //Q13 - final destination
+              showPostalCodeSection_q13();
+            } else {  
+              hidePostalCodeSection_q13();
             }
 
+
+            // if (api.fn.getCurrentPageIndex() === 999) { //postal code q29: 44==>46
+            //   showPostalCodeSection_q29() ;
+            // } else {
+            //   hidePostalCodeSection_q29();
+            // }
+
+            switch(api.fn.getCurrentPageIndex() ) {
+              case 11: ////Q8 = Core_Q27 = ADV6.4 
+                showGoogleMaps("Q8");
+                break;
+              case 17:      //Q12 = leaving bus 
+                showGoogleMaps("Q12");
+                break;
+              default:
+                hideGoogleMaps();
+                break;
+            }
 
           };
 
@@ -116,9 +141,5 @@
         });
       });
     </script>
-
-<!--     <input list="postalCodeList" style="display: none" onchange="select_postal_code()"  onkeyup="search_postal_code()" name="inputPostalCodeID" id="inputPostalCodeID" >
-    <datalist id="postalCodeList"> </datalist>  -->
-  
 </body>
 </html>

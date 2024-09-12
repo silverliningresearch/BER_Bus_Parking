@@ -1,10 +1,23 @@
-#inputPostalCodeQ6ID {
+#inputpostalCodeQ13ID {
     position: absolute;
     max-width: 100%;
     width: 30rem;
 } 
 
 #inputPostalCodeQ27ID {
+    position: absolute;
+    max-width: 100%;
+    width: 30rem;
+} 
+
+#inputpostalCode_q12ID {
+    position: absolute;
+    max-width: 100%;
+    width: 30rem;
+} 
+
+
+#inputPostalCodeQ29ID {
     position: absolute;
     max-width: 100%;
     width: 30rem;

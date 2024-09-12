@@ -1,3 +1,6 @@
+  var current_map_question;
+  var map;
+
   function parseInfor(latLng){
     var geocoder = new google.maps.Geocoder();
     var content  = "";
@@ -30,15 +33,29 @@
             }
             //console.log("full address: ", results[0]);  
 
-            document.getElementById("selectedAddress").innerHTML = "Your selection: Country = " + country + "; Postal Code = " + postal_code;
+            document.getElementById("selectedAddress").innerHTML = "Your selection: Country = " + country + "; Postal Code = " + postal_code + " " + locality + " " + city;
             var address = document.getElementById("selectedAddress").innerHTML;
-            api.fn.answers({urlVar20:  address});
-            api.fn.answers({q27_Goolge_Maps: postal_code + " - " + locality + ", " + city});
-            api.fn.answers({q27_search_list:  ""});
-            //console.log("Address: ", address);
-            //api.fn.goNext();
-            //api.fn.answers({q_latLng: latLng});
+
+            if (current_map_question == "Q8") {
+              api.fn.answers({Q8_Goolge_Maps_show:  address});
+              api.fn.answers({Q8_Core_q27_postal_code: postal_code + " - " + locality + ", " + city + ", " + country});
+            } 
+            else if (current_map_question == "Q12") 
+            {
+              api.fn.answers({Q12_Goolge_Maps_show: address});
+              api.fn.answers({Q12_postal_code: postal_code + " - " + locality + ", " + city + ", " + country});
+            }
+
+
           }
+
+            if (postal_code.length > 0) {  
+              $('.rt-btn.rt-btn-next').show(); 
+            }
+            else
+            {
+              alert("Please select a location from the map.");
+            }
           }
         }
     }); 
@@ -49,7 +66,15 @@
     x.style.display = "none";
     var y = document.getElementById("pac-input");
     y.style.display = "none";
+    y.innerHTML = "";
+
+    map.setZoom(8);
+
     document.getElementById("selectedAddress").style.display = "none";
+
+    document.getElementById("selectedAddress").innerHTML = "";
+    document.getElementById("pac-input").value = "";
+
     //Modify CSS to display Google Map
     var rt_container = document.querySelectorAll(".rt-container");
     var slt_page_container = document.querySelectorAll(".slt-page-container");
@@ -63,7 +88,10 @@
     }
   }
 
-  function showGoogleMaps() {
+  function showGoogleMaps(map_question) {
+    
+    current_map_question = map_question;
+
     var x = document.getElementById("map");
     x.style.display = "block";
     var y = document.getElementById("pac-input");
@@ -83,14 +111,19 @@
       //console.log( rt_container[i].style.paddingBottom);
       slt_page_container[i].style.paddingBottom = 0 +"px";
     }
+
+    $('.rt-btn.rt-btn-next').hide(); 
+
   }
 
   function initAutocomplete() {
     const myLatlng = { lat: 52.3733, lng: 13.5064};
 
-    const map = new google.maps.Map(document.getElementById("map"), {
+    //const map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {      
+
     center: myLatlng,
-    zoom: 9,
+    zoom: 8,
     mapTypeId: "roadmap",
   });
   // Create the search box and link it to the UI element.
@@ -130,7 +163,6 @@
       }
       else {
         parseInfor(place.geometry.location);
-        //api.fn.goNext();
       }
 
       const icon = {

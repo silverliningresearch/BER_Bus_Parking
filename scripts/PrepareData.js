@@ -40,26 +40,26 @@ function initCurrentTimeVars() {
    console.log("currentMonth: ", currentMonth);
 
    switch(currentMonth) {
-    case "01-2023":
-    case "02-2023":
-    case "03-2023":                  
-    case "04-2023":
-      total_quota = 2000;
+    case "01-2024":
+    case "02-2024":
+    case "03-2024":                  
+    case "04-2024":
+      total_quota = 1834;
       break;
-    case "05-2023":
-    case "06-2023":
-    case "07-2023":
-    case "08-2023":
-    case "09-2023":      
-    case "10-2023":          
-      total_quota = 2500;
+    case "05-2024":
+    case "06-2024":
+    case "07-2024":
+    case "08-2024":
+    case "09-2024":      
+    case "10-2024":          
+      total_quota = 2350;
       break;
-    case "11-2023":          
-    case "12-2023":              
-      total_quota = 2000;
+    case "11-2024":          
+    case "12-2024":              
+      total_quota = 1834;
       break;
     default:
-      total_quota = 2000;
+      total_quota = 1834;
       break;
   }
 }
@@ -97,7 +97,7 @@ function notDeparted(flight_time) {
 
 function prepareInterviewData() {
   var quota_data_temp = JSON.parse(airport_airline_quota);
-  var interview_data_temp  = JSON.parse(interview_data_raw);
+  var interview_data_temp  = JSON.parse(interview_statistics);
   var departures_flight_list_temp  = JSON.parse(departuresFlightList);
 
   initCurrentTimeVars();
@@ -122,26 +122,18 @@ function prepareInterviewData() {
   for (i = 0; i < interview_data_temp.length; i++) {
     var interview = interview_data_temp[i];
     //only get complete interview & not test
-    if ((interview.InterviewState == "Completed")
-      //&& (interview.Core_Q1 == "1")
-      && (isCurrentMonth(interview.InterviewEndDate))
-      )
+    if ((isCurrentMonth(interview.InterviewDate)))
     {
-      if (interview.AirlineCode && interview.Dest) {
-        var airline = interview.AirlineCode;
-        var airport = interview.Dest;
-        var airport_code = airport.substring(airport.length - 4, airport.length-1);
-        var airport_airline = '"Airport_Airline"' + ":" + '"' +  airport_code + " - " + airline + '", ';
-        var InterviewEndDate = '"InterviewEndDate"' + ":" + '"' +  interview["InterviewEndDate"] ;
-        var str = '{' + airport_airline + InterviewEndDate + '"}';
-        interview_data.push(JSON.parse(str));
-      }
-      else{
-        console.log("ignored interview: ", interview);
-      }
+
+      var airport_airline = '"Airport_Airline"' + ":" + '"' + interview["quota_id"] + '", ';
+      var InterviewEndDate = '"InterviewEndDate"' + ":" + '"' +  interview["InterviewDate"]+ '", ' ;
+      var Completed_of_interviews = '"Completed_of_interviews"' + ":" + '"' +  interview["Number of interviews"] ;
+      var str = '{' + airport_airline + InterviewEndDate + Completed_of_interviews + '"}';
+      interview_data.push(JSON.parse(str));
     }
   }
-  //prepare flight list
+
+   //prepare flight list
   //empty the list
   today_flight_list = [];
   today_flight_list.length = 0;

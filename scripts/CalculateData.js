@@ -14,7 +14,7 @@ function CalculateAirportAirLineReport() {
   var not_in_quota_list =[];
   for (i = 0; i < interview_data.length; i++) 
   {
-    total_completed++;
+    total_completed = total_completed +   parseInt(interview_data[i].Completed_of_interviews);
     found_temp = 0;
     for (j = 0; j < quota_data.length; j++) 
     {
@@ -33,7 +33,7 @@ function CalculateAirportAirLineReport() {
     for (j = 0; j < interview_data.length; j++) {
       if (row.Airport_Airline.toUpperCase() == interview_data[j].Airport_Airline.toUpperCase()) 
       { 
-        row.Completed++;
+        row.Completed = row.Completed  + parseInt(interview_data[j].Completed_of_interviews);
       }
     }
     row.Difference = row.Completed -  row.Quota;
