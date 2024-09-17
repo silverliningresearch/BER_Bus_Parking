@@ -72,6 +72,7 @@ function search_postal_code_q12() {
 function select_postal_code_q12() {
   var postalCode = document.getElementById('inputpostalCode_q12ID').value;
   api.fn.answers({Q12_postal_code:  postalCode});
+  api.fn.answers({urlVar20:  postalCode});
   console.log("ADV_6_3_search_list:", postalCode);
   
     
