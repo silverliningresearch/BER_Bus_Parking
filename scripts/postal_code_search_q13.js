@@ -100,7 +100,7 @@ function showPostalCodeSection_q13() {
     var currentValue  = api.fn.answers().urlVar19;
     if (currentValue) {
       if (currentValue !== "") {
-        document.getElementById('inputpostalCodeQ13ID').value = currentValue;
+        //document.getElementById('inputpostalCodeQ13ID').value = currentValue;
       }
     }
 
@@ -112,7 +112,7 @@ function showPostalCodeSection_q13() {
     }
 
     $('.rt-btn.rt-btn-next').hide(); 
-    $('#inputpostalCodeQ13ID').show(); 
+    //$('#inputpostalCodeQ13ID').show(); 
 }
 
 function hidePostalCodeSection_q13() {

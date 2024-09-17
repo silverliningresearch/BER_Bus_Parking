@@ -94,7 +94,7 @@ function showPostalCodeSection_q29() {
       console.log("not found ", document.getElementById('inputPostalCodeQ29ID').value);
     }
 
-    //$('.rt-btn.rt-btn-next').hide(); 
+    $('.rt-btn.rt-btn-next').hide(); 
     $('#inputPostalCodeQ29ID').show(); 
 }
 

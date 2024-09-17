@@ -99,7 +99,7 @@ function showPostalCodeSection_q12() {
     var currentValue  = api.fn.answers().ADV_6_3a_postalcode;
     if (currentValue) {
       if (currentValue !== "") {
-        document.getElementById('inputpostalCode_q12ID').value = currentValue;
+        //document.getElementById('inputpostalCode_q12ID').value = currentValue;
       }
     }
 
@@ -110,8 +110,8 @@ function showPostalCodeSection_q12() {
       console.log("not found ", document.getElementById('inputpostalCode_q12ID').value);
     }
 
-    //$('.rt-btn.rt-btn-next').hide(); 
-    $('#inputpostalCode_q12ID').show(); 
+    $('.rt-btn.rt-btn-next').hide(); 
+    //$('#inputpostalCode_q12ID').show(); 
 }
 
 function hidePostalCodeSection_q12() {

@@ -103,7 +103,7 @@ function showPostalCodeSection_q8() {
     var currentValue  = api.fn.answers().urlVar18;
     if (currentValue) {
       if (currentValue !== "") {
-        document.getElementById('inputPostalCodeQ27ID').value = currentValue;
+        //document.getElementById('inputPostalCodeQ27ID').value = currentValue;
       }
     }
 
