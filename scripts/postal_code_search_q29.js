@@ -83,7 +83,7 @@ function showPostalCodeSection_q29() {
     var currentValue  = api.fn.answers().q29_postalcode;
     if (currentValue) {
       if (currentValue !== "") {
-        document.getElementById('inputPostalCodeQ29ID').value = currentValue;
+        //document.getElementById('inputPostalCodeQ29ID').value = currentValue;
       }
     }
 
