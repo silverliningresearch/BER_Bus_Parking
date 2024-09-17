@@ -24,14 +24,16 @@ function load_postal_code_q8() {
 
   console.log("Q8_Core_Q27_6_text: country...", country);
 
+  
+
   if (country ==='Republica Checa' || country ==='Tchéquie' || country ==='Republika Czeska' 
-  || country ==='Çek Cumhuriyeti' || country ==='Tschechien' || country ==='Czech Republic')  {
+  || country ==='Çek Cumhuriyeti' || country ==='Tschechien' || country.includes('Czech Republic'))  {
     postalCodeq27 = JSON.parse(postalCodeCzech);
-  } else if (country ==='Germany' || country ==='Deutschland' || country ==='Almanya' 
+  } else if ((country.includes('Germany')) || country ==='Deutschland' || country ==='Almanya' 
             || country ==='Niemcy' || country ==='Allemagne' || country ==='Alemania') {
     postalCodeq27 = JSON.parse(postalCodeGermany);
   }
-  else if (country ==='Poland' || country ==='Polonya' || country ==='Polska' 
+  else if (country.includes('Poland') || country ==='Polonya' || country ==='Polska' 
   || country ==='Pologne' || country ==='Polonia' || country ==='Polen')  {
     postalCodeq27 = JSON.parse(postalCodePoland);
   }

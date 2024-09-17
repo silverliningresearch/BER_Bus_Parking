@@ -23,13 +23,13 @@ function load_postal_code_q13() {
   var country = api.fn.answers().Q13_1_text;
 
   if (country ==="Republica Checa" || country ==="Tchéquie" || country ==="Republika Czeska" 
-      || country ==="Çek Cumhuriyeti" || country ==="Tschechien" || country ==="Czech Republic")  {
+      || country ==="Çek Cumhuriyeti" || country ==="Tschechien" || country.includes("Czech Republic"))  {
     postalCodeQ13 = JSON.parse(postalCodeCzech);
-  } else if (country ==="Germany" || country ==="Deutschland" || country ==="Almanya" 
+  } else if (country.includes("Germany") || country ==="Deutschland" || country ==="Almanya" 
              || country ==="Niemcy" || country ==="Allemagne" || country ==="Alemania") {
     postalCodeQ13 = JSON.parse(postalCodeGermany);
   }
-  else if (country ==="Poland" || country ==="Polonya" || country ==="Polska" 
+  else if (country.includes("Poland") || country ==="Polonya" || country ==="Polska" 
           || country ==="Pologne" || country ==="Polonia" || country ==="Polen")  {
     postalCodeQ13 = JSON.parse(postalCodePoland);
   }
