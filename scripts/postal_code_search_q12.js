@@ -7,13 +7,13 @@ function find_postal_code_q12(list, item) {
     if (item !== "") {
       for (i = 0; i < list.length; i++) {
         if (list[i].Name.toLowerCase() === item) {
-          //$('.rt-btn.rt-btn-next').show(); 
+          $('.rt-btn.rt-btn-next').show(); 
           return true;
         }
       }
     }
   }
-  //$('.rt-btn.rt-btn-next').hide(); 
+  $('.rt-btn.rt-btn-next').hide(); 
   return false;
 }
 
@@ -22,15 +22,12 @@ function load_postal_code_q12() {
 
   var country = api.fn.answers().Q12_6_text;
 
-  if (country ==="Republica Checa" || country ==="Tchéquie" || country ==="Republika Czeska" 
-      || country ==="Çek Cumhuriyeti" || country ==="Tschechien" || country.includes("Czech Republic"))  {
+  if (country.includes("Czech Republic"))  {
     postalCode_q12 = JSON.parse(postalCodeCzech);
-  } else if (country.includes("Germany") || country ==="Deutschland" || country ==="Almanya" 
-             || country ==="Niemcy" || country ==="Allemagne" || country ==="Alemania") {
+  } else if (country.includes("Germany")) {
     postalCode_q12 = JSON.parse(postalCodeGermany);
   }
-  else if (country.includes("Poland") || country ==="Polonya" || country ==="Polska" 
-          || country ==="Pologne" || country ==="Polonia" || country ==="Polen")  {
+  else if (country.includes("Poland"))  {
     postalCode_q12 = JSON.parse(postalCodePoland);
   }
   else {
@@ -111,7 +108,7 @@ function showPostalCodeSection_q12() {
     }
 
     $('.rt-btn.rt-btn-next').hide(); 
-    //$('#inputpostalCode_q12ID').show(); 
+    $('#inputpostalCode_q12ID').show(); 
 }
 
 function hidePostalCodeSection_q12() {

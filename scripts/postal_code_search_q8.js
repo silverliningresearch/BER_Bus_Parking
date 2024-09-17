@@ -1,4 +1,4 @@
-var postalCodeq27;
+var postalCodeq8;
 
 function find_postal_code_q8(list, item) {
   item = item.toLowerCase();
@@ -26,35 +26,33 @@ function load_postal_code_q8() {
 
   
 
-  if (country ==='Republica Checa' || country ==='Tchéquie' || country ==='Republika Czeska' 
-  || country ==='Çek Cumhuriyeti' || country ==='Tschechien' || country.includes('Czech Republic'))  {
-    postalCodeq27 = JSON.parse(postalCodeCzech);
-  } else if ((country.includes('Germany')) || country ==='Deutschland' || country ==='Almanya' 
-            || country ==='Niemcy' || country ==='Allemagne' || country ==='Alemania') {
-    postalCodeq27 = JSON.parse(postalCodeGermany);
+  if (country.includes('Czech Republic'))  {
+    postalCodeq8 = JSON.parse(postalCodeCzech);
+  } 
+  else if (country.includes('Germany')) {
+    postalCodeq8 = JSON.parse(postalCodeGermany);
   }
-  else if (country.includes('Poland') || country ==='Polonya' || country ==='Polska' 
-  || country ==='Pologne' || country ==='Polonia' || country ==='Polen')  {
-    postalCodeq27 = JSON.parse(postalCodePoland);
+  else if (country.includes('Poland'))  {
+    postalCodeq8 = JSON.parse(postalCodePoland);
   }
   else {
-    postalCodeq27 = JSON.parse(postalCodeNone);
+    postalCodeq8 = JSON.parse(postalCodeNone);
   }
 
   console.log("load_postal_code_q8 done!");
 }
 
 function search_postal_code_q8() {
-  var input = document.getElementById('inputPostalCodeQ27ID').value;
-  var list = document.getElementById('postalCodeq27List');
+  var input = document.getElementById('inputpostalCodeq8ID').value;
+  var list = document.getElementById('postalCodeq8List');
   
   list.innerHTML = '';
   input = input.toLowerCase();
 
   console.log("search_postal_code_q8 started...");
   var count = 0;
-  for (i = 0; i < postalCodeq27.length; i++) {
-    let postcalCode = postalCodeq27[i];
+  for (i = 0; i < postalCodeq8.length; i++) {
+    let postcalCode = postalCodeq8[i];
 
     if (postcalCode.Name.toLowerCase().includes(input)) {
       const elem = document.createElement("option");
@@ -67,26 +65,26 @@ function search_postal_code_q8() {
 
   console.log("search_postal_code_q8 done!");
   
-  if (find_postal_code_q8(postalCodeq27, document.getElementById('inputPostalCodeQ27ID').value)) {
-    console.log("Found ", document.getElementById('inputPostalCodeQ27ID').value);
+  if (find_postal_code_q8(postalCodeq8, document.getElementById('inputpostalCodeq8ID').value)) {
+    console.log("Found ", document.getElementById('inputpostalCodeq8ID').value);
   }
   else{
-    console.log("not found ", document.getElementById('inputPostalCodeQ27ID').value);
+    console.log("not found ", document.getElementById('inputpostalCodeq8ID').value);
   }
 }
 
 function select_postal_code_q8() {
-  var postalCode = document.getElementById('inputPostalCodeQ27ID').value;
+  var postalCode = document.getElementById('inputpostalCodeq8ID').value;
   api.fn.answers({Q8_Core_q27_postal_code:  postalCode});
   api.fn.answers({urlVar18:  postalCode});
   console.log("q27_search_list:", postalCode);
   
     
-  if (find_postal_code_q8(postalCodeq27, document.getElementById('inputPostalCodeQ27ID').value)) {
-    console.log("Found ", document.getElementById('inputPostalCodeQ27ID').value);
+  if (find_postal_code_q8(postalCodeq8, document.getElementById('inputpostalCodeq8ID').value)) {
+    console.log("Found ", document.getElementById('inputpostalCodeq8ID').value);
   }
   else{
-    console.log("not found ", document.getElementById('inputPostalCodeQ27ID').value);
+    console.log("not found ", document.getElementById('inputpostalCodeq8ID').value);
     alert("Please select a postal code from the list.");
   }
 
@@ -96,50 +94,29 @@ function select_postal_code_q8() {
 function showPostalCodeSection_q8() {
     load_postal_code_q8();  
 
-    $('.rt-element.rt-text-container').append(`<input list="postalCodeq27List" onchange="select_postal_code_q8()"  onkeyup="search_postal_code_q8()" name="inputPostalCodeQ27ID" id="inputPostalCodeQ27ID" >
-    <datalist id="postalCodeq27List"> </datalist>`);
-    document.getElementById('inputPostalCodeQ27ID').value = "";
+    $('.rt-element.rt-text-container').append(`<input list="postalCodeq8List" onchange="select_postal_code_q8()"  onkeyup="search_postal_code_q8()" name="inputpostalCodeq8ID" id="inputpostalCodeq8ID" >
+    <datalist id="postalCodeq8List"> </datalist>`);
+    document.getElementById('inputpostalCodeq8ID').value = "";
 
     var currentValue  = api.fn.answers().urlVar18;
     if (currentValue) {
       if (currentValue !== "") {
-        //document.getElementById('inputPostalCodeQ27ID').value = currentValue;
+        //document.getElementById('inputpostalCodeq8ID').value = currentValue;
       }
     }
 
-    if (find_postal_code_q8(postalCodeq27, document.getElementById('inputPostalCodeQ27ID').value)) {
-      console.log("Found ", document.getElementById('inputPostalCodeQ27ID').value);
+    if (find_postal_code_q8(postalCodeq8, document.getElementById('inputpostalCodeq8ID').value)) {
+      console.log("Found ", document.getElementById('inputpostalCodeq8ID').value);
     }
     else{
-      console.log("not found ", document.getElementById('inputPostalCodeQ27ID').value);
+      console.log("not found ", document.getElementById('inputpostalCodeq8ID').value);
     }
 
     $('.rt-btn.rt-btn-next').hide(); 
-    $('#inputPostalCodeQ27ID').show(); 
+    $('#inputpostalCodeq8ID').show(); 
 }
 
 function hidePostalCodeSection_q8() {
-  $('#inputPostalCodeQ27ID').hide();
+  $('#inputpostalCodeq8ID').hide();
 }
 
-/* function waitForElement(querySelector, timeout){
-  return new Promise((resolve, reject)=>{
-    var timer = false;
-    if(document.querySelectorAll(querySelector).length) return resolve();
-    const observer = new MutationObserver(()=>{
-      if(document.querySelectorAll(querySelector).length){
-        observer.disconnect();
-        if(timer !== false) clearTimeout(timer);
-        return resolve();
-      }
-    });
-    observer.observe(document.body, {
-      childList: true, 
-      subtree: true
-    });
-    if(timeout) timer = setTimeout(()=>{
-      observer.disconnect();
-      reject();
-    }, timeout);
-  });
-} */
