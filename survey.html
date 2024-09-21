@@ -90,25 +90,25 @@
               hideFlightCodeSection_q24_arrival();
             }
 
-            if (api.fn.getCurrentPageIndex() === 12) { //Flight departure
+            if (api.fn.getCurrentPageIndex() === 13) { //Flight departure
               showFlightCodeSection_q3_departure() ;
             } else {
               hideFlightCodeSection_q3_departure();
             }
 
-            if (api.fn.getCurrentPageIndex() === 10) { //Q8 = Core_Q27 = ADV6.4
+            if (api.fn.getCurrentPageIndex() === 11) { //Q8 = Core_Q27 = ADV6.4
               showPostalCodeSection_q8() ;
             } else {
               hidePostalCodeSection_q8();
             }
             
-            if (api.fn.getCurrentPageIndex() === 16) { //Q12 = leaving bus
+            if (api.fn.getCurrentPageIndex() === 17) { //Q12 = leaving bus
               showPostalCodeSection_q12();
             } else {
               hidePostalCodeSection_q12();
             }
 
-            if (api.fn.getCurrentPageIndex() === 19) { //Q13 - final destination
+            if (api.fn.getCurrentPageIndex() === 20) { //Q13 - final destination
               showPostalCodeSection_q13();
             } else {  
               hidePostalCodeSection_q13();
@@ -122,10 +122,10 @@
             // }
 
             switch(api.fn.getCurrentPageIndex() ) {
-              case 11: ////Q8 = Core_Q27 = ADV6.4 
+              case 12: ////Q8 = Core_Q27 = ADV6.4 
                 showGoogleMaps("Q8");
                 break;
-              case 17:      //Q12 = leaving bus 
+              case 18:      //Q12 = leaving bus 
                 showGoogleMaps("Q12");
                 break;
               default:
