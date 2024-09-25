@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BER - Bus Parking Survey 2024</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      rel="stylesheet"
+      href="https://survalyzereu.blob.core.windows.net/public/assets/font-awesome.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://survalyzereu.blob.core.windows.net/public/assets/dx.common.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://survalyzereu.blob.core.windows.net/public/assets/dx.light.css"
+    />
+    <link
+      href="https://survalyzer.survalyzer.eu/assets/themes/default/rt-theme.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link href="css/map-search-box.css" rel ="stylesheet" type="text/css" />
+    <link href="css/postal-code-search-box.css" rel ="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <survalyzer-survey
+      surveyhash="pqsqaumvgy"
+      tenant="silverlining"
+    ></survalyzer-survey>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://survalyzer.survalyzer.eu/assets/survalyzer-survey.js"></script>
+
+    <script src="search_list/postal_code_Czech.js"></script>
+    <script src="search_list/postal_Code_Germany.js"></script>
+    <script src="search_list/postal_code_Poland.js"></script>
+    <script src="search_list/postal_code_None.js"></script>
+    <script src="https://silverliningresearch.github.io/BER_PS_2024/search_list/flight_list_Departure.js"></script>
+    <script src="search_list/flight_list_Arrival.js"></script>
+    
+    <script src="scripts/maps_search.js"></script>
+    <script src="scripts/postal_code_search_q13.js"></script>
+    <script src="scripts/postal_code_search_q12.js"></script>
+    <script src="scripts/postal_code_search_q8.js"></script>
+        <script src="scripts/postal_code_search_q29.js"></script>
+
+    <script src="scripts/flight_search_q3_departure.js"></script>
+    <script src="scripts/flight_search_q24_arrival.js"></script>
+    
+    <div id="selectedAddress"></div>
+    <input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
+
+    <div id="map">
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyvj3Xxekjs1ZGpv5mtwkblHhmjdPd2SA&callback=initAutocomplete&libraries=places&v=weekly"
+        defer> 
+      </script>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+
+        var current_url = window.location.href;
+        if (current_url.includes("?l=")) {
+          var new_url = current_url.substring(0, current_url.length - 5)
+          location.assign(new_url);
+        }
+
+        setTimeout(() => {
+          const googleMapsHandler = () => {
+            console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
+
+            if (api.fn.getCurrentPageIndex() === 4) { //Flight arrival: 
+              showFlightCodeSection_q24_arrival() ;
+            } else {
+              hideFlightCodeSection_q24_arrival();
+            }
+
+            if (api.fn.getCurrentPageIndex() === 13) { //Flight departure
+              showFlightCodeSection_q3_departure() ;
+            } else {
+              hideFlightCodeSection_q3_departure();
+            }
+
+            if (api.fn.getCurrentPageIndex() === 8) { //Q8 = Core_Q27 = ADV6.4
+              showPostalCodeSection_q8() ;
+            } else {
+              hidePostalCodeSection_q8();
+            }
+            
+            if (api.fn.getCurrentPageIndex() === 17) { //Q12 = leaving bus
+              showPostalCodeSection_q12();
+            } else {
+              hidePostalCodeSection_q12();
+            }
+
+            if (api.fn.getCurrentPageIndex() === 20) { //Q13 - final destination
+              showPostalCodeSection_q13();
+            } else {  
+              hidePostalCodeSection_q13();
+            }
+
+
+            // if (api.fn.getCurrentPageIndex() === 999) { //postal code q29: 44==>46
+            //   showPostalCodeSection_q29() ;
+            // } else {
+            //   hidePostalCodeSection_q29();
+            // }
+
+            switch(api.fn.getCurrentPageIndex() ) {
+              case 9: ////Q8 = Core_Q27 = ADV6.4 
+                showGoogleMaps("Q8");
+                break;
+              case 18:      //Q12 = leaving bus 
+                showGoogleMaps("Q12");
+                break;
+              default:
+                hideGoogleMaps();
+                break;
+            }
+
+          };
+
+          api.events.subscribe('next', googleMapsHandler);
+          api.events.subscribe('back', googleMapsHandler);
+          api.events.subscribe('startedOrContinued', googleMapsHandler);
+        });
+      });
+    </script>
+</body>
+</html>
