@@ -33,7 +33,7 @@
 
   <body>
     <survalyzer-survey
-      surveyhash="ybzeozcwse"
+      surveyhash="pqsqaumvgy"
       tenant="silverlining"
     ></survalyzer-survey>
 
@@ -84,7 +84,7 @@
           const googleMapsHandler = () => {
             console.log("Current Page Index: ", api.fn.getCurrentPageIndex() );
 
-            if (api.fn.getCurrentPageIndex() === 5) { //Flight arrival: 
+            if (api.fn.getCurrentPageIndex() === 4) { //Flight arrival: 
               showFlightCodeSection_q24_arrival() ;
             } else {
               hideFlightCodeSection_q24_arrival();
@@ -96,7 +96,7 @@
               hideFlightCodeSection_q3_departure();
             }
 
-            if (api.fn.getCurrentPageIndex() === 11) { //Q8 = Core_Q27 = ADV6.4
+            if (api.fn.getCurrentPageIndex() === 8) { //Q8 = Core_Q27 = ADV6.4
               showPostalCodeSection_q8() ;
             } else {
               hidePostalCodeSection_q8();
@@ -122,7 +122,7 @@
             // }
 
             switch(api.fn.getCurrentPageIndex() ) {
-              case 12: ////Q8 = Core_Q27 = ADV6.4 
+              case 9: ////Q8 = Core_Q27 = ADV6.4 
                 showGoogleMaps("Q8");
                 break;
               case 18:      //Q12 = leaving bus 
